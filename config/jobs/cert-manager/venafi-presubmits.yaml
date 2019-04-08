@@ -11,7 +11,8 @@ presubmits:
       preset-dind-enabled: "true"
     spec:
       containers:
-      - image: eu.gcr.io/jetstack-build-infra-images/bazelbuild:v20181107-8aac55d-0.18.0
+      # TODO: revert this change
+      - image: eu.gcr.io/jetstack-build-infra-images/alpine:v20181107-8aac55d-3.7
         args:
         - runner
         - ./start-demo.sh
