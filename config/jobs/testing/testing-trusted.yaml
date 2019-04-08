@@ -1,6 +1,21 @@
 presets:
 
 - labels:
+    preset-deployer-github-token: "true"
+  env:
+  - name: GITHUB_USER
+    value: jetstack-bot
+  - name: GITHUB_TOKEN
+    value: /etc/github/token
+  volumeMounts:
+  - name: github-token
+    mountPath: /etc/github
+  volumes:
+  - name: github-token
+    secret:
+      secretName: bot-github-token
+
+- labels:
     preset-deployer-service-account: "true"
   env:
   - name: GOOGLE_APPLICATION_CREDENTIALS
@@ -45,6 +60,7 @@ postsubmits:
       preset-bazel-scratch-dir: "true"
       preset-image-deploy: "true"
       preset-deployer-service-account: "true"
+      preset-deployer-github-token: "true"
     spec:
       containers:
       - image: eu.gcr.io/jetstack-build-infra-images/bazelbuild:20190408-4d1853d-0.24.1
