@@ -16,6 +16,16 @@ presets:
       secretName: bot-github-token
 
 - labels:
+    preset-deployer-ssh-key: "true"
+  volumeMounts:
+  - name: ssh
+    mountPath: /root/.ssh
+  volumes:
+  - name: ssh
+    secret:
+      secretName: jetstack-bot-ssh-keys
+
+- labels:
     preset-deployer-service-account: "true"
   env:
   - name: GOOGLE_APPLICATION_CREDENTIALS
@@ -61,6 +71,7 @@ postsubmits:
       preset-image-deploy: "true"
       preset-deployer-service-account: "true"
       preset-deployer-github-token: "true"
+      preset-deployer-ssh-key: "true"
     spec:
       containers:
       - image: eu.gcr.io/jetstack-build-infra-images/bazelbuild:20190408-4d1853d-0.24.1
