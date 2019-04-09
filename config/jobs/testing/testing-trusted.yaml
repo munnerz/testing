@@ -14,6 +14,7 @@ presets:
   - name: github-token
     secret:
       secretName: bot-github-token
+      defaultMode: 0400
 
 - labels:
     preset-deployer-ssh-key: "true"
@@ -74,7 +75,7 @@ postsubmits:
       preset-deployer-ssh-key: "true"
     spec:
       containers:
-      - image: eu.gcr.io/jetstack-build-infra-images/bazelbuild:20190408-4d1853d-0.24.1
+      - image: eu.gcr.io/jetstack-build-infra-images/bazelbuild:20190409-2a0fb73-0.24.1
         args:
         # Wrap the release script with the runner so we can use docker-in-docker
         - runner
