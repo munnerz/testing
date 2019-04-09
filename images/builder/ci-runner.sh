@@ -57,7 +57,7 @@ fi
 
 echo "Patching YAML files for new image"
 find "${WORKSPACE}/config/jobs" -type f -name '*.yaml' | \
-    xargs bazel run //prow/image-bumper -- \
+    xargs bazel run //tools/image-bumper -- \
     --image-regex "${PUSHED_IMAGE}"
 
 ensure-config() {
