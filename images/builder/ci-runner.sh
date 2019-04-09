@@ -70,18 +70,18 @@ ensure-config() {
 }
 ensure-config "$@"
 
-title="Bump ${BUILD_DIR} jobs"
-
+image_name=$(basename "${PUSHED_IMAGE}")
+title="Bump ${image_name} jobs"
 git add -A
 git commit -m "${title}"
-git push -f "git@github.com:${user}/testing.git" HEAD:autobump-"${BUILD_DIR}"
+git push -f "git@github.com:${user}/testing.git" HEAD:autobump-"${image_name}"
 
 bazel run @test_infra//robots/pr-creator -- \
     --github-token-path="${token}" \
     --org munnerz --repo testing --branch autobump-images \
-    --title="${title}" --match-title="Bump ${BUILD_DIR} jobs" \
-    --body="Automatically bumped jobs that referenced image ${BUILD_DIR}" \
-    --source="${user}":autobump-"${BUILD_DIR}" \
+    --title="${title}" --match-title="Bump ${image_name} jobs" \
+    --body="Automatically bumped jobs that referenced image ${image_name}" \
+    --source="${user}":autobump-"${image_name}" \
     --confirm
 
 echo "Complete!"
