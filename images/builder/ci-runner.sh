@@ -27,11 +27,11 @@ shift
 
 WORKSPACE="$(bazel info workspace)"
 
-# echo "Activating service account..."
-# gcloud auth activate-service-account --key-file="${GOOGLE_APPLICATION_CREDENTIALS}"
+echo "Activating service account..."
+gcloud auth activate-service-account --key-file="${GOOGLE_APPLICATION_CREDENTIALS}"
 
-# echo "Generating docker credentials..."
-# gcloud auth configure-docker --quiet
+echo "Generating docker credentials..."
+gcloud auth configure-docker --quiet
 
 echo "Executing builder..."
 PUSHED_IMAGE=$(bazel run \
