@@ -5,7 +5,7 @@ presets:
   env:
   - name: GITHUB_USER
     value: jetstack-bot
-  - name: GITHUB_TOKEN
+  - name: GITHUB_TOKEN_FILE
     value: /etc/github/token
   volumeMounts:
   - name: github-token
