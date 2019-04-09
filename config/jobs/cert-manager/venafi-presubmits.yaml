@@ -12,7 +12,7 @@ presubmits:
     spec:
       containers:
       # TODO: revert this change
-      - image: eu.gcr.io/jetstack-build-infra-images/alpine:v20181107-8aac55d-3.7
+      - image: eu.gcr.io/jetstack-build-infra-images/alpine:20190409-cc700f7-3.7
         args:
         - runner
         - ./start-demo.sh
